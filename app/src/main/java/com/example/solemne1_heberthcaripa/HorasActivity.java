@@ -50,7 +50,13 @@ public class HorasActivity extends AppCompatActivity {
     }
 
     public void eliminarHora(View view){
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "petshop", null, 1);
+        SQLiteDatabase db = admin.getWritableDatabase();
 
+        String codigo = codeTxt.getText().toString();
+
+        db.delete("horas", "codigo="+codigo, null);
+        Toast.makeText(getBaseContext(), "has eliminado la hora: "+codigo, Toast.LENGTH_SHORT).show();
     }
 
     public void mostrarHora(View view){
