@@ -54,9 +54,13 @@ public class HorasActivity extends AppCompatActivity {
         SQLiteDatabase db = admin.getWritableDatabase();
 
         String codigo = codeTxt.getText().toString();
+        if (!codigo.isEmpty()) {
 
-        db.delete("horas", "codigo="+codigo, null);
-        Toast.makeText(getBaseContext(), "has eliminado la hora: "+codigo, Toast.LENGTH_SHORT).show();
+            db.delete("horas", "codigo="+codigo, null);
+            Toast.makeText(getBaseContext(), "has eliminado la hora: "+codigo, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getBaseContext(), "El codigo no puede ir vacio", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void mostrarHora(View view){
