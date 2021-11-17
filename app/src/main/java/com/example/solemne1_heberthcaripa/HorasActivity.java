@@ -86,6 +86,28 @@ public class HorasActivity extends AppCompatActivity {
     }
 
     public void actualizarHora(View view) {
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "petshop", null, 1);
+        SQLiteDatabase db = admin.getWritableDatabase();
+
+        String codigo = codeTxt.getText().toString();
+        String hora = horaTxt.getText().toString();
+        String mascota = mascotaTxt.getText().toString();
+
+        if (!codigo.isEmpty() && !hora.isEmpty() && !mascota.isEmpty()) {
+            ContentValues cont = new ContentValues();
+            cont.put("hora", hora);
+            cont.put("mascota", mascota);
+
+            db.update("horas", cont, "codigo="+codigo, null);
+            db.close();
+            clean();
+
+            Toast.makeText(getBaseContext(), "Hora actualizada correctamente", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getBaseContext(), "Los campos no pueden ir vacios", Toast.LENGTH_SHORT).show();
+        }
+
+
 
     }
 
