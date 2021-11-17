@@ -44,6 +44,12 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    public void navegarHoras(View view) {
+        Intent i = new Intent(this, HorasActivity.class);
+        startActivity(i);
+
+    }
+
 
 
 }

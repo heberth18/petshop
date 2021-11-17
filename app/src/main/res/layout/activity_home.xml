@@ -157,7 +157,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="16dp"
-                android:text="Medicinas"
+                android:onClick="navegarHoras"
+                android:text="Veterinaria"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/button5" />
         </androidx.constraintlayout.widget.ConstraintLayout>

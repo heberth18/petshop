@@ -10,7 +10,6 @@ import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import Objetos.Clientes;
 import Objetos.Accesorios;
 
 public class InsumosActivity extends AppCompatActivity {
