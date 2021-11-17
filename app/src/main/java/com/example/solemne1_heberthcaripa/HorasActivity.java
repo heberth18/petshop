@@ -3,6 +3,7 @@ package com.example.solemne1_heberthcaripa;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -36,7 +37,7 @@ public class HorasActivity extends AppCompatActivity {
             ContentValues cont = new ContentValues();
             cont.put("codigo", codigo);
             cont.put("hora", hora);
-            cont.put("mascota", "mascota");
+            cont.put("mascota", mascota);
 
             db.insert("horas", null, cont);
             db.close();
@@ -53,6 +54,24 @@ public class HorasActivity extends AppCompatActivity {
     }
 
     public void mostrarHora(View view){
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "petshop", null, 1);
+        SQLiteDatabase db = admin.getWritableDatabase();
+
+        String codigo = codeTxt.getText().toString();
+
+        if (!codigo.isEmpty()) {
+          Cursor file = db.rawQuery("SELECT hora, mascota FROM horas WHERE codigo="+codigo, null);
+           if (file.moveToFirst()) {
+               horaTxt.setText(file.getString(0));
+               mascotaTxt.setText(file.getString(1));
+           } else {
+               Toast.makeText(getBaseContext(), "No hay horas asociadas", Toast.LENGTH_SHORT).show();
+
+           }
+
+        } else {
+            Toast.makeText(getBaseContext(), "El codigo no puede ir vacio", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
